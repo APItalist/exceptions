@@ -16,7 +16,7 @@ func throwtest2() {
 	panic(exceptions.New("Hello world!"))
 }
 
-func TestThrow(t *testing.T) {
+func TestE2E(t *testing.T) {
 	caught := false
 	try.Run(
 		throwtest1,
