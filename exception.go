@@ -65,7 +65,7 @@ func Inherit(cause error, skipStackItems int, stackItems int) BaseException {
 		stackItems = DefaultExceptionStackDepth
 	}
 	rpc := make([]uintptr, stackItems)
-	runtime.Callers(skipStackItems + 2, rpc[:])
+	runtime.Callers(skipStackItems+2, rpc[:])
 	return &baseException{
 		cause,
 		rpc,
@@ -74,7 +74,7 @@ func Inherit(cause error, skipStackItems int, stackItems int) BaseException {
 
 type baseException struct {
 	cause error
-	pcs []uintptr
+	pcs   []uintptr
 }
 
 func (e baseException) Unwrap() error {
@@ -84,4 +84,3 @@ func (e baseException) Unwrap() error {
 func (e baseException) Stack() *runtime.Frames {
 	return runtime.CallersFrames(e.pcs)
 }
-
